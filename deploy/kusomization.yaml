@@ -6,5 +6,5 @@ configMapGenerator:
   files:
   - index.html
 commonLabels:
-  app.kubernetes.io/part-of: kamApp
-  app.kubernetes.io/name: kamApp
+  app.kubernetes.io/part-of: kamApps
+  app.kubernetes.io/name: kamApps
