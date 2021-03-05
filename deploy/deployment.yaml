@@ -1,33 +1,53 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+  labels:
+    app: kam
+    app.kubernetes.io/component: web
+    app.kubernetes.io/instance: kam
+    app.kubernetes.io/name: kam
+    app.kubernetes.io/part-of: kam
+    app.openshift.io/runtime: go
   name: kam
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: kam
-      app.kubernetes.io/part-of: kam
-      app.kubernetes.io/version: 0.0.1
+      app: kam
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: kam
-        app.kubernetes.io/part-of: kam
-        app.kubernetes.io/version: 0.0.1
+        app: kam
     spec:
       containers:
       - name: kam
-        image: quay.io/isequeir/kam:latest
         imagePullPolicy: Always
-        volumeMounts:
-        - name: web-files
-          mountPath: /usr/share/kam
+        image: quay.io/isequeir/kam:latest
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 45
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
         ports:
-        - name: http
-          containerPort: 8080
+        - containerPort: 8080
           protocol: TCP
-      volumes:
-      - name: web-files
-        configMap:
-          name: www-files
+        - containerPort: 8443
+          protocol: TCP
+        - containerPort: 8778
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 45
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
