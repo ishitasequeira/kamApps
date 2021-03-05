@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kam-test
+  name: kam
   namespace: default
 spec:
   destination:
