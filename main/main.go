@@ -36,7 +36,7 @@ func main() {
 	// The router is now formed by calling the `newRouter` constructor function
 	// that we defined above. The rest of the code stays the same
 	r := newRouter()
-	err := http.ListenAndServe(":8081", r)
+	err := http.ListenAndServe(":8080", r)
 	if err != nil {
 		panic(err.Error())
 	}
