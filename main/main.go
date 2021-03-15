@@ -22,10 +22,10 @@ func newRouter() *mux.Router {
 	// For example, if we type "/assets/index.html" in our browser, the file server
 	// will look for only "index.html" inside the directory declared above.
 	// If we did not strip the prefix, the file server would look for "./assets/assets/index.html", and yield an error
-	staticFileHandler := http.StripPrefix("/assets/", http.FileServer(staticFileDirectory))
+	staticFileHandler := http.StripPrefix("/", http.FileServer(staticFileDirectory))
 	// The "PathPrefix" method acts as a matcher, and matches all routes starting
 	// with "/assets/", instead of the absolute route itself
-	r.PathPrefix("/assets/").Handler(staticFileHandler).Methods("GET")
+	r.PathPrefix("/").Handler(staticFileHandler).Methods("GET")
 
 	r.HandleFunc("/blog", getBlogHandler).Methods("GET")
 	r.HandleFunc("/blog", createBlogHandler).Methods("POST")
@@ -35,10 +35,10 @@ func newRouter() *mux.Router {
 func main() {
 	// The router is now formed by calling the `newRouter` constructor function
 	// that we defined above. The rest of the code stays the same
-	fmt.Fprintf(w, "Starting Application")
+	// fmt.Fprintf(w, "Starting Application")
 	r := newRouter()
 	err := http.ListenAndServe(":8081", r)
-	fmt.Fprintf(w, err)
+	// fmt.Fprintf(w, err)
 	if err != nil {
 		panic(err.Error())
 	}
