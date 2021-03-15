@@ -52,5 +52,5 @@ func createBlogHandler(w http.ResponseWriter, r *http.Request) {
 	blogs = append(blogs, blog)
 
 	//Finally, we redirect the user to the original HTMl page (located at `/assets/`)
-	http.Redirect(w, r, "/assets/", http.StatusFound)
+	http.Redirect(w, r, "/", http.StatusFound)
 }
