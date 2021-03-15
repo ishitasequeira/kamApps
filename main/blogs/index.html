@@ -8,52 +8,65 @@
   <title>The bird encyclopedia</title>
   <style>
     body {
-      background: #555;
+      background: rgb(65, 64, 64);
     }
 
     .content {
-      max-width: 500px;
+      max-width: 1000px;
       margin: auto;
-      background: white;
-      padding: 10px;
+      margin-top: 100px;
+      background: rgb(255, 255, 255);
+      padding: 20px;
+      padding-bottom: 50px;
+    }
+
+    .content1 {
+      margin-top: 50px;
     }
   </style>
 </head>
 
 <body>
-  <div class="content">
-  <h1>Blogpedia</h1>
-  <!-- 
-    This section of the document specifies the table that will
-    be used to display the list of birds and their description
-   -->
-  <table border="1">
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-    </tr>
-  </table>
-  <br/>
+  <center>
+    <div class="content">
 
-  <!-- 
-    This section contains the form, that will be used to hit the 
-    `POST /bird` API that we will build in the next section
-   -->
-  <form action="/blog" method="post">
-    <table>
-      <tr>
-        <td>Title:</td>
-        <td><input type="text" name="title"></td>
-      </tr>
-      <tr>
-        <td>Description:</td>
-        <td><input type="text" name="description"></td>
-      </tr>
-    </table>
-    <br/> 
-    <input type="submit" value="Submit">
-  </form>
+      <h1>Blogpedia</h1>
+      <!-- 
+      This section of the document specifies the table that will
+      be used to display the list of birds and their description
+    -->
+      <table border="1">
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+        </tr>
+      </table>
+      <br /><br /><br />
 
+      <hr/>
+
+      <!-- 
+      This section contains the form, that will be used to hit the 
+      `POST /bird` API that we will build in the next section
+    -->
+      <div class="content1">
+        <h2>Add Blog</h2>
+        <form action="/blog" method="post">
+          <table>
+            <tr>
+              <td>Title:</td>
+              <td><input type="text" name="title"></td>
+            </tr>
+            <tr>
+              <td>Description:</td>
+              <td><input type="text" name="description"></td>
+            </tr>
+          </table>
+          <br />
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+  </center>
   <!-- 
     Finally, the last section is the script that will
     run on each page load to fetch the list of birds

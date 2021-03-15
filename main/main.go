@@ -15,17 +15,17 @@ func newRouter() *mux.Router {
 	r.HandleFunc("/hello", handler).Methods("GET")
 
 	// Declare the static file directory and point it to the directory we just made
-	staticFileDirectory := http.Dir("./assets/")
+	staticFileDirectory := http.Dir("./blogs/")
 	// Declare the handler, that routes requests to their respective filename.
 	// The fileserver is wrapped in the `stripPrefix` method, because we want to
-	// remove the "/assets/" prefix when looking for files.
-	// For example, if we type "/assets/index.html" in our browser, the file server
+	// remove the "/blogs/" prefix when looking for files.
+	// For example, if we type "/blogs/index.html" in our browser, the file server
 	// will look for only "index.html" inside the directory declared above.
-	// If we did not strip the prefix, the file server would look for "./assets/assets/index.html", and yield an error
-	staticFileHandler := http.StripPrefix("/", http.FileServer(staticFileDirectory))
+	// If we did not strip the prefix, the file server would look for "./blogs/index.html", and yield an error
+	staticFileHandler := http.StripPrefix("/blogs", http.FileServer(staticFileDirectory))
 	// The "PathPrefix" method acts as a matcher, and matches all routes starting
-	// with "/assets/", instead of the absolute route itself
-	r.PathPrefix("/").Handler(staticFileHandler).Methods("GET")
+	// with "/blogs/", instead of the absolute route itself
+	r.PathPrefix("/blogs/").Handler(staticFileHandler).Methods("GET")
 
 	r.HandleFunc("/blog", getBlogHandler).Methods("GET")
 	r.HandleFunc("/blog", createBlogHandler).Methods("POST")

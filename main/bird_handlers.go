@@ -14,7 +14,7 @@ type Blog struct {
 var blogs []Blog
 
 func getBlogHandler(w http.ResponseWriter, r *http.Request) {
-	//Convert the "birds" variable to json
+	//Convert the "blogs" variable to json
 	blogListBytes, err := json.Marshal(blogs)
 
 	// If there is an error, print it to the console, and return a server
@@ -51,6 +51,6 @@ func createBlogHandler(w http.ResponseWriter, r *http.Request) {
 	// Append our existing list of birds with a new entry
 	blogs = append(blogs, blog)
 
-	//Finally, we redirect the user to the original HTMl page (located at `/assets/`)
-	http.Redirect(w, r, "/", http.StatusFound)
+	//Finally, we redirect the user to the original HTMl page (located at `/blogs/`)
+	http.Redirect(w, r, "/blogs/", http.StatusFound)
 }
