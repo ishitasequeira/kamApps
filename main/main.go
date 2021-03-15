@@ -35,8 +35,10 @@ func newRouter() *mux.Router {
 func main() {
 	// The router is now formed by calling the `newRouter` constructor function
 	// that we defined above. The rest of the code stays the same
+	fmt.Fprintf(w, "Starting Application")
 	r := newRouter()
 	err := http.ListenAndServe(":8081", r)
+	fmt.Fprintf(w, err)
 	if err != nil {
 		panic(err.Error())
 	}
